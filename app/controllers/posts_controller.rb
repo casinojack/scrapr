@@ -1,0 +1,16 @@
+class PostsController < ApplicationController
+  def index
+    #xmlfile = File.new("http://www.reddit.com")
+    #xmldoc = Document.new(xmlfile)
+
+
+    doc = Nokogiri::HTML(open("http://www.reddit.com"));
+
+    @redditPosts = []
+    doc.css("div#siteTable p.title a.title").each_with_index do |p, i|
+      @redditPosts[i] = {:title => p.text, :url => p[:href]}
+    end
+
+    @posts = Post.all(:order => 'title')
+  end
+end

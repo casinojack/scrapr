@@ -1,0 +1,12 @@
+%table#posts
+  %thead
+    %tr
+      %th Title
+      %th Upvotes
+      %th Content
+      %th Date Posted
+      %th
+    %tbody
+      - @redditPosts.each do |post|
+        %tr.postRow
+          %td= link_to "#{post[:title]}", "#{post[:url]}"

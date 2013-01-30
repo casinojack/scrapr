@@ -1,0 +1,15 @@
+class CreatePosts < ActiveRecord::Migration
+  def up
+    create_table 'posts' do |post|
+      post.string 'title'
+      post.string 'url'
+      post.integer 'upvotes'
+      post.string 'content'
+      post.string 'date_posted'
+    end
+  end
+
+  def down
+    drop table 'posts'
+  end
+end
